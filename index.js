@@ -23,6 +23,23 @@ TicTacToe.prototype.switchPlayer = function() {
   this.player = this.player === 'x' ? 'o' : 'x';
 }
 
+TicTacToe.prototype.areAllEqual = function(a, b, c) {
+  return a === b && b === c;
+}
+
+TicTacToe.prototype.isRowWinner = function() {
+  return this.areAllEqual(this.board[row][0], this.board[row][1], this.board[row][2]);
+}
+
+TicTacToe.prototype.isColWinner = function() {
+  return this.areAllEqual(this.board[0][col], this.board[1][col], this.board[2][col]);
+}
+
+TicTacToe.prototype.isDiagonalWinner = function() {
+  return this.areAllEqual(this.board[0][0], this.board[1][1], this.board[2][2]) || 
+         this.areAllEqual(this.board[0][2], this.board[1][1], this.board[2][0]);
+}
+
 TicTacToe.prototype.isDraw = function() {
   return this.moves === 9;
 }
