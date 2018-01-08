@@ -25,7 +25,7 @@ TicTacToe.prototype.printBoard = function(board) {
 }
 
 TicTacToe.prototype.printInvalidMove = function(message) {
-
+  console.log(`Invalid input: ${message}`);
 }
 
 TicTacToe.prototype.isInvalidMove = function(move) {
@@ -52,12 +52,11 @@ TicTacToe.prototype.convertToRowCol = function(move) {
 TicTacToe.prototype.promptPlayerMove = function() {
   var move;
 
+  console.log(`Player ${this.player}, it's your turn! Please choose a move (1-9)! `);
+  
   do {
-    console.log(`Player ${this.player}, it's your turn! Please choose a move (1-9): `);
-
     prompt.start();
-
-    prompt.get(['move'], function(err, result) {
+    prompt.get(['Move'], function(err, result) {
       if (err) {
         console.log('Error: ', err);
       }
