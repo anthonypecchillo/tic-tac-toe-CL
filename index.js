@@ -24,20 +24,27 @@ TicTacToe.prototype.switchPlayer = function() {
 }
 
 TicTacToe.prototype.areAllEqual = function(a, b, c) {
+  if (a === ' ' || b === ' ' || c === ' ') {
+    return false;
+  }
   return a === b && b === c;
 }
 
-TicTacToe.prototype.isRowWinner = function() {
+TicTacToe.prototype.isRowWinner = function(row) {
   return this.areAllEqual(this.board[row][0], this.board[row][1], this.board[row][2]);
 }
 
-TicTacToe.prototype.isColWinner = function() {
+TicTacToe.prototype.isColWinner = function(col) {
   return this.areAllEqual(this.board[0][col], this.board[1][col], this.board[2][col]);
 }
 
 TicTacToe.prototype.isDiagonalWinner = function() {
   return this.areAllEqual(this.board[0][0], this.board[1][1], this.board[2][2]) || 
          this.areAllEqual(this.board[0][2], this.board[1][1], this.board[2][0]);
+}
+
+TicTacToe.prototype.isWinner = function(row, col) {
+  return this.isRowWinner(row) || this.isColWinner(col) || this.isDiagonalWinner();
 }
 
 TicTacToe.prototype.isDraw = function() {
@@ -52,6 +59,14 @@ TicTacToe.prototype.printBoard = function(board) {
   console.log('|— — —|');
   console.log('|' + this.board[2][0] + '|' + this.board[2][1] + '|' + this.board[2][2] + '|');
   console.log(' ¯ ¯ ¯ ');
+}
+
+TicTacToe.prototype.printWinner = function() {
+  console.log(`Congratulations, ${this.player}, you've won!`);
+}
+
+TicTacToe.prototype.printDraw = function() {
+  console.log('The game is a draw.');
 }
 
 TicTacToe.prototype.printInvalidMove = function(message) {
@@ -98,17 +113,18 @@ TicTacToe.prototype.promptPlayerMove = function() {
 }
 
 TicTacToe.prototype.play = function() {
-  this.startGame();
   this.printBoard();
 
   var {row, col} = this.promptPlayerMove();
 
   this.placeMove(row, col);
 
-  if ('WIN CONDITION') {
-
-  } else if ('DRAW CONDITION') {
-
+  if (this.isWinner(row, col)) {
+    this.printBoard(this.board);
+    this.printWinner();
+  } else if (this.isDraw()) {
+    this.printBoard(this.board);
+    this.printDraw();
   } else {
     this.switchPlayer();
     this.play();
