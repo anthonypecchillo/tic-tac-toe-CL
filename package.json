@@ -1,0 +1,22 @@
+{
+  "name": "tic-tac-toe-cl",
+  "version": "1.0.0",
+  "description": "Command Line Tic Tac Toe Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonypecchillo/tic-tac-toe-CL.git"
+  },
+  "author": "Anthony Pecchillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anthonypecchillo/tic-tac-toe-CL/issues"
+  },
+  "homepage": "https://github.com/anthonypecchillo/tic-tac-toe-CL#readme",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}
