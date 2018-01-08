@@ -14,6 +14,15 @@ TicTacToe.prototype.startGame = function() {
   console.log('Let the game begin!');
 }
 
+TicTacToe.prototype.placeMove = function(row, col) {
+  this.board[row][col] = this.player;
+  this.moves++;
+}
+
+TicTacToe.prototype.switchPlayer = function() {
+  this.player = this.player === 'x' ? 'o' : 'x';
+}
+
 TicTacToe.prototype.printBoard = function(board) {
   console.log(' _ _ _ ');
   console.log('|' + this.board[0][0] + '|' + this.board[0][1] + '|' + this.board[0][2] + '|');
@@ -29,8 +38,9 @@ TicTacToe.prototype.printInvalidMove = function(message) {
 }
 
 // NOT FINISHED!
-TicTacToe.prototype.isPositionOccupied = function() {
-  return false;
+TicTacToe.prototype.isPositionOccupied = function(move) {
+  var {row, col} = this.convertToRowCol(move);
+  return this.board[row][col] === 'x' || this.board[row][col] === 'o';
 }
 
 TicTacToe.prototype.isInvalidMove = function(move) {
@@ -58,7 +68,7 @@ TicTacToe.prototype.convertToRowCol = function(move) {
 
 TicTacToe.prototype.promptPlayerMove = function() {
   var move;
-
+  
   do {
     move = prompt.question(`Player ${this.player}, it's your turn! Please choose a move (1-9): `);
   } while(this.isInvalidMove(move));
@@ -72,8 +82,16 @@ TicTacToe.prototype.play = function() {
 
   var {row, col} = this.promptPlayerMove();
 
-  console.log('row: ', row);
-  console.log('col: ', col);
+  this.placeMove(row, col);
+
+  if ('WIN CONDITION') {
+
+  } else if ('DRAW CONDITION') {
+
+  } else {
+    this.switchPlayer();
+    this.play();
+  }
 }
 
 var game = new TicTacToe();
