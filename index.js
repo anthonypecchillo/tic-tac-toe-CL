@@ -23,6 +23,10 @@ TicTacToe.prototype.switchPlayer = function() {
   this.player = this.player === 'x' ? 'o' : 'x';
 }
 
+TicTacToe.prototype.isDraw = function() {
+  return this.moves === 9;
+}
+
 TicTacToe.prototype.printBoard = function(board) {
   console.log(' _ _ _ ');
   console.log('|' + this.board[0][0] + '|' + this.board[0][1] + '|' + this.board[0][2] + '|');
