@@ -1,4 +1,4 @@
-var prompt = require('prompt');
+var prompt = require('readline-sync');
 
 var TicTacToe = function() {
   this.player = 'x';
@@ -28,6 +28,11 @@ TicTacToe.prototype.printInvalidMove = function(message) {
   console.log(`Invalid input: ${message}`);
 }
 
+// NOT FINISHED!
+TicTacToe.prototype.isPositionOccupied = function() {
+  return false;
+}
+
 TicTacToe.prototype.isInvalidMove = function(move) {
   move = Number(move);
 
@@ -54,19 +59,10 @@ TicTacToe.prototype.convertToRowCol = function(move) {
 TicTacToe.prototype.promptPlayerMove = function() {
   var move;
 
-  console.log(`Player ${this.player}, it's your turn! Please choose a move (1-9)! `);
-  
   do {
-    prompt.start();
-    prompt.get(['Move'], function(err, result) {
-      if (err) {
-        console.log('Error: ', err);
-      }
-      move = result.move;
-    });
-
+    move = prompt.question(`Player ${this.player}, it's your turn! Please choose a move (1-9): `);
   } while(this.isInvalidMove(move));
-  
+
   return this.convertToRowCol(move);
 }
 
@@ -75,6 +71,9 @@ TicTacToe.prototype.play = function() {
   this.printBoard();
 
   var {row, col} = this.promptPlayerMove();
+
+  console.log('row: ', row);
+  console.log('col: ', col);
 }
 
 var game = new TicTacToe();
