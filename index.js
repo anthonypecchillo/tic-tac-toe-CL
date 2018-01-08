@@ -46,7 +46,9 @@ TicTacToe.prototype.isInvalidMove = function(move) {
 }
 
 TicTacToe.prototype.convertToRowCol = function(move) {
-  
+  var row = Math.floor((move - 1) / 3);
+  var col = (move - 1) % 3;
+  return {row, col};
 }
 
 TicTacToe.prototype.promptPlayerMove = function() {
