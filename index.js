@@ -1,3 +1,5 @@
+// Next Steps: Modularize into separate files!
+
 var prompt = require('readline-sync');
 
 var TicTacToe = function() {
@@ -10,9 +12,9 @@ var TicTacToe = function() {
   ];
 }
 
-TicTacToe.prototype.startGame = function() {
-  console.log('Let the game begin!');
-}
+// ----------------------------------------------------------------------------
+// Game Logic Methods:
+// ----------------------------------------------------------------------------
 
 TicTacToe.prototype.placeMove = function(row, col) {
   this.board[row][col] = this.player;
@@ -22,6 +24,12 @@ TicTacToe.prototype.placeMove = function(row, col) {
 TicTacToe.prototype.switchPlayer = function() {
   this.player = this.player === 'x' ? 'o' : 'x';
 }
+// ----------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------
+// Win/Draw Condition Methods:
+// ----------------------------------------------------------------------------
 
 TicTacToe.prototype.areAllEqual = function(a, b, c) {
   if (a === ' ' || b === ' ' || c === ' ') {
@@ -50,6 +58,12 @@ TicTacToe.prototype.isWinner = function(row, col) {
 TicTacToe.prototype.isDraw = function() {
   return this.moves === 9;
 }
+// ----------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------
+// Text Printing Methods:
+// ----------------------------------------------------------------------------
 
 TicTacToe.prototype.printBoard = function(board) {
   console.log(' _ _ _ ');
@@ -72,8 +86,13 @@ TicTacToe.prototype.printDraw = function() {
 TicTacToe.prototype.printInvalidMove = function(message) {
   console.log(`Invalid input: ${message}`);
 }
+// ----------------------------------------------------------------------------
 
-// NOT FINISHED!
+
+// ----------------------------------------------------------------------------
+// Other Helper Methods:
+// ----------------------------------------------------------------------------
+
 TicTacToe.prototype.isPositionOccupied = function(move) {
   var {row, col} = this.convertToRowCol(move);
   return this.board[row][col] === 'x' || this.board[row][col] === 'o';
@@ -111,6 +130,7 @@ TicTacToe.prototype.promptPlayerMove = function() {
 
   return this.convertToRowCol(move);
 }
+// ----------------------------------------------------------------------------
 
 TicTacToe.prototype.play = function() {
   this.printBoard();
